@@ -1,2 +1,31 @@
-Hi Ashok
-How Are U
+# Declare the required variables
+variable "operation" {
+  description = "The operation to perform: add, subtract, multiply, divide"
+  type        = string
+}
+
+variable "num2" {
+  description = "The first number"
+  type        = number
+}
+
+variable "num6" {
+  description = "The second number"
+  type        = number
+}
+
+# Perform the calculation using locals
+locals {
+  result = {
+    add      = var.num2 + var.num6
+    subtract = var.num2 - var.num6
+    multiply = var.num2 * var.num6
+    divide   = var.num6 / var.num2
+  }
+}
+
+# Output the result
+output "calculation_result" {
+  description = "The result of the calculation"
+  value       = local.result[var.operation]
+}
